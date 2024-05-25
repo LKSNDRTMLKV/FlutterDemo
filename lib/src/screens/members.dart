@@ -50,14 +50,14 @@ class _MembersScreenState extends State<MembersScreen>
               text: 'All',
               icon: Icon(Icons.people),
             ),
-            Tab(
-              text: 'Active',
-              icon: Icon(Icons.new_releases),
-            ),
-            Tab(
-              text: 'Inactive',
-              icon: Icon(Icons.list),
-            ),
+            // Tab(
+            //   text: 'Active',
+            //   icon: Icon(Icons.new_releases),
+            // ),
+            // Tab(
+            //   text: 'Inactive',
+            //   icon: Icon(Icons.list),
+            // ),
           ],
         ),
       ),

@@ -105,19 +105,19 @@ class MemberState {
   List<Member>? members;
   Member? selectedMember;
 
-Future<List<Member>> fetchMembers() async {
-  try {
-    const url = "https://dummyjson.com/users";
-    final response = await http.get(Uri.parse(url));
-    final body = json.decode(response.body) as Map<String, dynamic>;
-    final users = body['users'] as List<dynamic>;
-    return users
-        .map<Member>((json) => Member.fromJson(json as Map<String, dynamic>))
-        .toList();
-  } catch (e) {
-    throw Exception('Failed to load members');
+  Future<List<Member>> fetchMembers() async {
+    try {
+      const url = "https://dummyjson.com/users";
+      final response = await http.get(Uri.parse(url));
+      final body = json.decode(response.body) as Map<String, dynamic>;
+      final users = body['users'] as List<dynamic>;
+      return users
+          .map<Member>((json) => Member.fromJson(json as Map<String, dynamic>))
+          .toList();
+    } catch (e) {
+      throw Exception('Failed to load members');
+    }
   }
-}
 
   Future<List<Member>> getMembers() async {
     members = await fetchMembers();
@@ -128,11 +128,14 @@ Future<List<Member>> fetchMembers() async {
     }
   }
 
-Future<Member> selectMember(int id) async {
-  if (members == null) {
-    await getMembers();
+  Future<Member> selectMember(int id) async {
+    if (members == null) {
+      await getMembers();
+    }
+    selectedMember = members?.firstWhere((member) => member.id == id);
+    return Future.value(selectedMember);
   }
-  selectedMember = members?.firstWhere((member) => member.id == id);
-  return Future.value(selectedMember);
-}
+
+  List<Member> get memberAdmins =>
+      [...members!.where((member) => member.role == 'admin')];
 }

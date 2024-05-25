@@ -246,15 +246,15 @@ class _BookstoreState extends State<Bookstore> {
                         onTap: (idx) {
                           GoRouter.of(context).go(switch (idx) {
                             0 => '/members/all',
-                            1 => '/members/active',
-                            2 => '/books/inactive',
+                            // 1 => '/members/active',
+                            // 2 => '/books/inactive',
                             _ => '/books/all',
                           });
                         },
                         selectedIndex: switch (state.uri.path) {
                           var p when p.startsWith('/members/all') => 0,
-                          var p when p.startsWith('/members/active') => 1,
-                          var p when p.startsWith('/members/inactive') => 2,
+                          // var p when p.startsWith('/members/active') => 1,
+                          // var p when p.startsWith('/members/inactive') => 2,
                           _ => 0,
                         },
                         child: child,
@@ -303,72 +303,72 @@ class _BookstoreState extends State<Bookstore> {
                       ),
                     ],
                   ),
-                  GoRoute(
-                    path: '/books/new',
-                    pageBuilder: (context, state) {
-                      return FadeTransitionPage<dynamic>(
-                        key: state.pageKey,
-                        // Use a builder to get the correct BuildContext
+                  //     GoRoute(
+                  //       path: '/books/new',
+                  //       pageBuilder: (context, state) {
+                  //         return FadeTransitionPage<dynamic>(
+                  //           key: state.pageKey,
+                  //           // Use a builder to get the correct BuildContext
 
-                        child: Builder(
-                          builder: (context) {
-                            return BookList(
-                              books: libraryInstance.newBooks,
-                              onTap: (book) {
-                                GoRouter.of(context)
-                                    .go('/books/new/book/${book.id}');
-                              },
-                            );
-                          },
-                        ),
-                      );
-                    },
-                    routes: [
-                      GoRoute(
-                        path: 'book/:bookId',
-                        parentNavigatorKey: appShellNavigatorKey,
-                        builder: (context, state) {
-                          return BookDetailsScreen(
-                            book: libraryInstance
-                                .getBook(state.pathParameters['bookId'] ?? ''),
-                          );
-                        },
-                      ),
-                    ],
-                  ),
-                  GoRoute(
-                    path: '/books/all',
-                    pageBuilder: (context, state) {
-                      return FadeTransitionPage<dynamic>(
-                        key: state.pageKey,
-                        // Use a builder to get the correct BuildContext
+                  //           child: Builder(
+                  //             builder: (context) {
+                  //               return BookList(
+                  //                 books: libraryInstance.newBooks,
+                  //                 onTap: (book) {
+                  //                   GoRouter.of(context)
+                  //                       .go('/books/new/book/${book.id}');
+                  //                 },
+                  //               );
+                  //             },
+                  //           ),
+                  //         );
+                  //       },
+                  //       routes: [
+                  //         GoRoute(
+                  //           path: 'book/:bookId',
+                  //           parentNavigatorKey: appShellNavigatorKey,
+                  //           builder: (context, state) {
+                  //             return BookDetailsScreen(
+                  //               book: libraryInstance
+                  //                   .getBook(state.pathParameters['bookId'] ?? ''),
+                  //             );
+                  //           },
+                  //         ),
+                  //       ],
+                  //     ),
+                  //     GoRoute(
+                  //       path: '/books/all',
+                  //       pageBuilder: (context, state) {
+                  //         return FadeTransitionPage<dynamic>(
+                  //           key: state.pageKey,
+                  //           // Use a builder to get the correct BuildContext
 
-                        child: Builder(
-                          builder: (context) {
-                            return BookList(
-                              books: libraryInstance.allBooks,
-                              onTap: (book) {
-                                GoRouter.of(context)
-                                    .go('/books/all/book/${book.id}');
-                              },
-                            );
-                          },
-                        ),
-                      );
-                    },
-                    routes: [
-                      GoRoute(
-                        path: 'book/:bookId',
-                        parentNavigatorKey: appShellNavigatorKey,
-                        builder: (context, state) {
-                          return BookDetailsScreen(
-                            book: libraryInstance
-                                .getBook(state.pathParameters['bookId'] ?? ''),
-                          );
-                        },
-                      ),
-                    ],
-                  ),
+                  //           child: Builder(
+                  //             builder: (context) {
+                  //               return BookList(
+                  //                 books: libraryInstance.allBooks,
+                  //                 onTap: (book) {
+                  //                   GoRouter.of(context)
+                  //                       .go('/books/all/book/${book.id}');
+                  //                 },
+                  //               );
+                  //             },
+                  //           ),
+                  //         );
+                  //       },
+                  //       routes: [
+                  //         GoRoute(
+                  //           path: 'book/:bookId',
+                  //           parentNavigatorKey: appShellNavigatorKey,
+                  //           builder: (context, state) {
+                  //             return BookDetailsScreen(
+                  //               book: libraryInstance
+                  //                   .getBook(state.pathParameters['bookId'] ?? ''),
+                  //             );
+                  //           },
+                  //         ),
+                  //       ],
+                  //     ),
                 ],
               ),
               GoRoute(
